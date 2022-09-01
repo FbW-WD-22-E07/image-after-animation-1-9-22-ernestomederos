@@ -1,56 +1,65 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: aqua;
-    display: grid;
-    place-items: center;
-    height: 100vh;
+  background-color: aqua;
+  display: grid;
+  place-items: center;
+  height: 100vh;
 }
 
 div.parent {
-    /* you need to change the position: */
+  position: relative;
 
-    width: 400px;
-    height: 400px;
-    /* background-color: aquamarine; */
-    /* to make parent circular */
-    border-radius: 50%;
-    /* how to hide ::after outside borders? */
+  width: 400px;
+  height: 400px;
+  background-color: aquamarine;
+  /* to make parent circular */
+  border-radius: 50%;
+  overflow: hidden;
+
+  /* how to hide ::after outside borders? */
 }
 
 div.parent img {
-    width: 100%;
-    height: 100%;
-    /* do you need object-fit? */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
 
-    /* make image inherit border-radius from parent: */
+  /* do you need object-fit? */
+
+  /* make image inherit border-radius from parent: */
 }
 
 div.parent::after {
-    content: "";
-    /* you need to change position:  */
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -165px;
 
-    /* suggested bottom, left values` */
-    /* bottom: 0;
+  /* suggested bottom, left values` */
+  /* bottom: 0;
     left: -150px; */
-    /* to make it start from the corner */
-    rotate: 45deg;
-    background-image: linear-gradient(
-        to top,
-        hsla(0, 0%, 100%, 0.5) 50%,
-        hsla(0, 0%, 100%, 1) 75%,
-        hsla(206, 100%, 99%, 0.5) 100%
-    );
-    height: 70px;
-    width: 100%;
-    /* make it hidden to start with:  */
+  /* to make it start from the corner */
+  rotate: 45deg;
+  background-image: linear-gradient(
+    to top,
+    hsla(0, 0%, 100%, 0.5) 50%,
+    hsla(0, 0%, 100%, 1) 75%,
+    hsla(206, 100%, 99%, 0.5) 100%
+  );
+  height: 70px;
+  width: 100%;
+  transition: 1s;
+  /* make it hidden to start with:  */
 }
 
 div.parent:hover::after {
-    /* the Y is enough since we rotated the element */
-    /* so think how to transform and make it visisble: */
+  transform: translateY(-500px);
+  /* the Y is enough since we rotated the element */
+  /* so think how to transform and make it visisble: */
 }
