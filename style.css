@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: aqua;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+div.parent {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    /* background-color: aquamarine; */
+    border-radius: 50%;
+    /* hide ::after outside borders */
+    overflow: hidden;
+}
+
+div.parent img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* make circular like parent */
+    border-radius: inherit;
+}
+
+div.parent::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -150px;
+    /* make it start from the corner */
+    rotate: 45deg;
+    /* background-color: hsla(0, 0%, 100%, 0.5); */
+    background-image: linear-gradient(
+        to top,
+        hsla(0, 0%, 100%, 0.5) 50%,
+        hsla(0, 0%, 100%, 1) 75%,
+        hsla(206, 100%, 99%, 0.5)100%
+    );
+    height: 70px;
+    width: 100%;
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+div.parent:hover::after {
+    /* the Y is enough since we rotated the element */
+    transform: translateY(-400px);
+    opacity: 1;
+}
